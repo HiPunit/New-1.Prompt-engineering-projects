@@ -1,0 +1,67 @@
+import openai
+while True:
+    
+    model_engine = "text-davinci-003"
+    
+    prompt = input('Enter new prompt: ')
+
+    if 'exit' in prompt or 'quit' in prompt:
+        break
+
+    completion = openai.Completion.create(
+        engine=model_engine,
+        prompt=prompt,
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    
+    
+    response = completion.choices[0].text
+    
+    
+    print(response)
+Enter new prompt: national animal of india
+---------------------------------------------------------------------------
+APIRemovedInV1                            Traceback (most recent call last)
+Cell In[9], line 10
+      7 if 'exit' in prompt or 'quit' in prompt:
+      8     break
+---> 10 completion = openai.Completion.create(
+     11     engine=model_engine,
+     12     prompt=prompt,
+     13     max_tokens=1024,
+     14     n=1,
+     15     stop=None,
+     16     temperature=0.5,
+     17 )
+     20 response = completion.choices[0].text
+     23 print(response)
+
+File E:\anaconda\Lib\site-packages\openai\_utils\_proxy.py:22, in LazyProxy.__getattr__(self, attr)
+     21 def __getattr__(self, attr: str) -> object:
+---> 22     return getattr(self.__get_proxied__(), attr)
+
+File E:\anaconda\Lib\site-packages\openai\_utils\_proxy.py:43, in LazyProxy.__get_proxied__(self)
+     41 def __get_proxied__(self) -> T:
+     42     if not self.should_cache:
+---> 43         return self.__load__()
+     45     proxied = self.__proxied
+     46     if proxied is not None:
+
+File E:\anaconda\Lib\site-packages\openai\lib\_old_api.py:33, in APIRemovedInV1Proxy.__load__(self)
+     31 @override
+     32 def __load__(self) -> None:
+---> 33     raise APIRemovedInV1(symbol=self._symbol)
+
+APIRemovedInV1: 
+
+You tried to access openai.Completion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+ 
